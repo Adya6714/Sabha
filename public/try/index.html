@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sabha · see the reasoning before your agent acts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="mark">
+    <svg viewBox="0 0 64 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 4c6 8 6 22 0 32-6-10-6-24 0-32z"/><path d="M32 36c-8-4-15-12-16-24 8 2 14 10 16 24z"/><path d="M32 36c8-4 15-12 16-24-8 2-14 10-16 24z"/></g></svg>
+    <span>Sabha</span>
+  </div>
+  <nav id="nav">
+    <button class="on" data-view="today">Today</button>
+    <button data-view="memory">Living Memory</button>
+    <button data-view="rules">Rules</button>
+    <button data-view="insights">Insights</button>
+  </nav>
+</header>
+
+<main class="col">
+  <!-- TODAY -->
+  <section class="view on" id="v-today">
+    <div class="hello">
+      <p class="kicker" id="dateLbl">Mon, 22 Oct 2040</p>
+      <h1>Good afternoon, Aarav.</h1>
+      <p class="lead">Your <b>AI</b> agent acts on its picture of you. Sabha shows the <b>reasoning</b> behind each action, <b>challenges</b> it, and lets <b>you</b> decide what gets acted on.</p>
+    </div>
+    <button class="banner" id="lcBanner" data-view="memory"><span class="dot"></span>Life-change mode: Your AI will confirm before relying on old preferences.</button>
+    <div class="status">
+      <span id="needsLbl">4 need you</span><span>·</span><span id="asksLbl">Asks today: 2 of 5</span>
+      <span class="spacer"></span>
+      <span class="legend" id="legend"></span>
+    </div>
+    <ol class="feed" id="feed"></ol>
+    <form class="ask" id="ask" autocomplete="off">
+      <input id="askIn" placeholder="Ask your AI to do something, e.g. book a cab for ₹600" aria-label="Ask your AI">
+      <button aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <ul class="pillars">
+      <li><b>Living Memory</b> corrects the information.</li>
+      <li><b>Council</b> challenges the reasoning.</li>
+      <li><b>Gate</b> enforces your decision.</li>
+    </ul>
+  </section>
+
+  <!-- MEMORY -->
+  <section class="view" id="v-memory">
+    <div class="page-h"><h1>Living Memory</h1><p class="lead">What your AI knows, where it came from, and what it may use.</p></div>
+    <div class="lc"><span><b>Life-change mode</b><small>Your AI asks more and assumes less while your life is changing.</small></span><button class="switch on" id="lcSwitch" aria-pressed="true"><i></i></button></div>
+    <div class="tabs" id="memTabs" role="tablist">
+      <button class="on" data-tab="prefs">Intentions</button>
+      <button data-tab="rel">Context you added</button>
+      <button data-tab="past">Past and inferred</button>
+      <button data-tab="signals">Signal permissions</button>
+      <button data-tab="data">Your data</button>
+    </div>
+    <div class="tabbody" id="memBody"></div>
+  </section>
+
+  <!-- RULES -->
+  <section class="view" id="v-rules">
+    <div class="page-h"><h1>Rules</h1><p class="lead">You set these. Your AI can never change its own permissions.</p></div>
+    <div class="card" id="rulesBody"></div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="view" id="v-insights">
+    <div class="page-h"><h1>Insights</h1><p class="lead">Are your decisions informed and yours? Simulated pilot data, plus what you do in this demo.</p></div>
+    <div class="stats" id="stats"></div>
+  </section>
+</main>
+<footer class="foot">Interactive demo · Simulated agent and data.</footer>
+
+<!-- the case sheet -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+    <button class="close" data-close aria-label="Close">×</button>
+    <div id="caseBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>

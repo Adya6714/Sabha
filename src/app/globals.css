@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f2e8;
+  --bg-deep: #efe6d4;
+  --card: #fffcf6;
+  --ink: #2b2722;
+  --ink2: #665d52;
+  --mute: #9d9286;
+  --line: #e8dcc8;
+  --soft: #f1e8d9;
+  --green: #24524a;
+  --leaf: #4f7a52;
+  --amber: #bf7426;
+  --red: #b4412c;
+  --blue: #4f7395;
+  --maroon: #9b3b2a;
+  --background: var(--bg);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-soft: var(--soft);
+  --color-green: var(--green);
+  --color-leaf: var(--leaf);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+  --color-maroon: var(--maroon);
+  --font-sans: var(--font-dm);
+  --font-serif: var(--font-lora);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-dm), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--maroon) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1.5%, -1.5%, 0) scale(1.03);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.8s ease both;
+}
+
+.animate-rise-delay {
+  animation: rise 0.9s ease 0.12s both;
+}
+
+.animate-rise-late {
+  animation: rise 1s ease 0.24s both;
+}
+
+.atmosphere {
+  animation: drift 18s ease-in-out infinite;
+}
+
+.atmosphere-dot {
+  animation: pulse-soft 4.5s ease-in-out infinite;
+}
