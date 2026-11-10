@@ -19,7 +19,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-1.5 transition-colors hover:bg-soft hover:text-ink"
+              className="hidden rounded-full px-3 py-1.5 transition-colors hover:bg-soft hover:text-ink sm:inline-flex"
             >
               {link.label}
             </Link>
