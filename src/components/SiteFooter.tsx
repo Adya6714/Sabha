@@ -8,8 +8,9 @@ export function SiteFooter() {
         <div>
           <Mark />
           <p className="mt-3 max-w-sm text-sm text-ink2">
-            See the reasoning before your AI agent acts. Challenge it. Keep the
-            authority your permissions define.
+            A governance layer between human intention and autonomous AI action.
+            Intelligence can be delegated. Authority should not be surrendered
+            silently.
           </p>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink2">

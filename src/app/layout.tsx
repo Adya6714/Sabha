@@ -20,34 +20,35 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sabha.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sabha · see the reasoning before your agent acts",
+    default: "Sabha · governance between intention and AI action",
     template: "%s · Sabha",
   },
   description:
-    "Sabha makes the reasoning behind your AI agent's decisions visible, challenges it from multiple perspectives, and gives you control over what gets acted on.",
+    "Sabha is a governance layer between human intention and autonomous AI action — making authority, incentives, assumptions and decisions visible, contestable and accountable.",
   applicationName: "Sabha",
   keywords: [
     "AI agent",
+    "AI governance",
+    "multi-agent delegation",
     "AI transparency",
-    "decision making",
-    "AI oversight",
+    "authority registry",
     "informed agency",
     "Sabha",
   ],
   authors: [{ name: "Sabha" }],
   openGraph: {
     type: "website",
-    title: "Sabha · see the reasoning before your agent acts",
+    title: "Sabha · governance between intention and AI action",
     description:
-      "Living Memory corrects the information. Council challenges the reasoning. Gate enforces your decision.",
+      "Intelligence can be delegated. Authority should not be surrendered silently.",
     url: siteUrl,
     siteName: "Sabha",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sabha · see the reasoning before your agent acts",
+    title: "Sabha · governance between intention and AI action",
     description:
-      "Make the reasoning behind your AI agent's decisions visible — then decide what gets acted on.",
+      "A governance layer that keeps AI authority, incentives and decisions visible and accountable.",
   },
   icons: {
     icon: "/icon.svg",
