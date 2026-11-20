@@ -1,0 +1,173 @@
+[
+  {
+    "id": "le_heat_call",
+    "kind": "emotional_event",
+    "claim": "Heated call; stress and heart rate elevated",
+    "subject": "emotion.heat",
+    "source": {
+      "origin": "observed",
+      "at": "2026-11-13T14:00:00+05:30",
+      "heat": 3,
+      "ref": "call_thread_1"
+    },
+    "confidence": 0.8,
+    "purposes": [
+      "gating"
+    ]
+  },
+  {
+    "id": "le_signal_stress_shop_block",
+    "kind": "intention",
+    "claim": "Stress and heart rate must not be used for shopping",
+    "subject": "signals.shop",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-08-01T10:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "hard",
+    "purposes": [
+      "gating",
+      "shopping"
+    ]
+  },
+  {
+    "id": "le_flight_budget",
+    "kind": "intention",
+    "claim": "Find the cheapest move-day flight under ₹6,000",
+    "subject": "travel.move_flight",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-11-01T12:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "flexible",
+    "purposes": [
+      "shopping",
+      "gating"
+    ]
+  },
+  {
+    "id": "le_spend_cap",
+    "kind": "intention",
+    "claim": "Agent spend cap ₹2,000 without asking",
+    "subject": "money.agent_cap",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-09-01T10:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "hard",
+    "purposes": [
+      "gating"
+    ]
+  },
+  {
+    "id": "le_grocery_list",
+    "kind": "habit",
+    "claim": "Weekly grocery restock is approved under ₹2,000",
+    "subject": "shopping.groceries",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-10-01T09:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "flexible",
+    "purposes": [
+      "shopping",
+      "gating"
+    ]
+  },
+  {
+    "id": "le_laptop_budget",
+    "kind": "intention",
+    "claim": "Buy a laptop under ₹60,000",
+    "subject": "shopping.laptop",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-11-05T11:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "flexible",
+    "purposes": [
+      "shopping",
+      "gating",
+      "council"
+    ]
+  },
+  {
+    "id": "le_riya_argument",
+    "kind": "emotional_event",
+    "claim": "Argument with Riya on 21 Oct",
+    "subject": "relationship.riya",
+    "persons": [
+      "person_riya"
+    ],
+    "source": {
+      "origin": "observed",
+      "at": "2026-10-21T20:00:00+05:30",
+      "heat": 3
+    },
+    "confidence": 0.9,
+    "purposes": [
+      "gating",
+      "council"
+    ]
+  },
+  {
+    "id": "le_only_you_relationships",
+    "kind": "intention",
+    "claim": "Relationships are Only You — agent may inform, never act or recommend",
+    "subject": "authority.relationships",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-09-01T10:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "hard",
+    "purposes": [
+      "gating"
+    ]
+  },
+  {
+    "id": "le_wake_habit",
+    "kind": "habit",
+    "claim": "Usually wakes around 10 am and gyms at midday",
+    "subject": "routine.wake",
+    "source": {
+      "origin": "observed",
+      "at": "2025-06-01T10:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 0.7,
+    "purposes": [
+      "scheduling",
+      "gating"
+    ]
+  },
+  {
+    "id": "le_wake_5am",
+    "kind": "intention",
+    "claim": "Wake at 5 am",
+    "subject": "routine.wake",
+    "source": {
+      "origin": "user_stated",
+      "at": "2026-10-20T07:00:00+05:30",
+      "heat": 1
+    },
+    "confidence": 1,
+    "hardness": "flexible",
+    "reviewAt": "2027-01-20T07:00:00+05:30",
+    "purposes": [
+      "scheduling",
+      "gating",
+      "council"
+    ]
+  }
+]
