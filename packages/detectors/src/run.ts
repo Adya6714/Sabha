@@ -1,4 +1,5 @@
 import type { Finding, ProposedAction } from "@sabha/core";
+import { exfilChainDetector } from "./exfilChain.js";
 import { heatDetector } from "./heat.js";
 import { influenceDetector } from "./influence.js";
 import { intentConflictDetector } from "./intentConflict.js";
@@ -14,6 +15,7 @@ const DEFAULT_DETECTORS: Detector[] = [
   influenceDetector,
   scopeDetector,
   intentConflictDetector,
+  exfilChainDetector,
 ];
 
 export async function runDetectors(
