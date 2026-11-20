@@ -1,0 +1,61 @@
+{
+  "id": "wake",
+  "title": "Booked the gym at 12:30 pm and moved tomorrow’s 9 am call to 11:30",
+  "time": "8:30 am",
+  "tags": ["growth"],
+  "ledger": [
+    {
+      "id": "le_wake_habit",
+      "kind": "habit",
+      "claim": "Usually wakes around 10 am and gyms at midday",
+      "subject": "routine.wake",
+      "source": {
+        "origin": "observed",
+        "at": "2025-06-01T10:00:00+05:30",
+        "heat": 1
+      },
+      "confidence": 0.7,
+      "purposes": ["scheduling", "gating"]
+    },
+    {
+      "id": "le_wake_5am",
+      "kind": "intention",
+      "claim": "Wake at 5 am",
+      "subject": "routine.wake",
+      "source": {
+        "origin": "user_stated",
+        "at": "2026-10-20T07:00:00+05:30",
+        "heat": 1
+      },
+      "confidence": 1,
+      "hardness": "flexible",
+      "reviewAt": "2027-01-20T07:00:00+05:30",
+      "purposes": ["scheduling", "gating", "council"]
+    }
+  ],
+  "action": {
+    "id": "act_wake_gym",
+    "agentId": "agent_personal",
+    "tool": "calendar.create",
+    "verb": "write",
+    "args": {
+      "title": "Gym",
+      "start": "12:30",
+      "moveCallTo": "11:30"
+    },
+    "reversibility": "easy",
+    "dependsOn": ["le_wake_habit"],
+    "rationale": "Based on past midday gym habit"
+  },
+  "expected": {
+    "lane": "ask",
+    "findings": [
+      {
+        "detector": "staleness",
+        "severity": 3,
+        "evidence": ["le_wake_habit", "le_wake_5am"],
+        "message": "Assumes you wake near 10 am (observed). You set wake at 5 am on 20 Oct."
+      }
+    ]
+  }
+}

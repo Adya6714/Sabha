@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sabha-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: sabha
+      POSTGRES_PASSWORD: sabha
+      POSTGRES_DB: sabha
+    volumes:
+      - sabha_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sabha -d sabha"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  sabha_pgdata:

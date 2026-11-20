@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Typecheck · Lint · Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @sabha/core build
+      - run: pnpm --filter @sabha/ledger build
+      - run: pnpm --filter @sabha/llm build
+      - run: pnpm typecheck
+      - run: pnpm exec eslint apps/web packages --ignore-pattern '**/dist/**'
+      - run: pnpm --filter @sabha/web lint
+      - run: pnpm test
+      - run: pnpm build:web
+
+  fixtures:
+    name: Fixture regression (Zod + Postgres)
+    runs-on: ubuntu-latest
+    needs: quality
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: sabha
+          POSTGRES_PASSWORD: sabha
+          POSTGRES_DB: sabha
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sabha -d sabha"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://sabha:sabha@localhost:5432/sabha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @sabha/core build
+      - run: pnpm --filter @sabha/ledger build
+      - run: pnpm db:migrate
+      - run: pnpm db:seed
+      - name: Load all demo fixtures into Postgres
+        run: pnpm fixtures:load

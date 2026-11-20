@@ -1,0 +1,12 @@
+server: mock_checkout
+tools:
+  - name: checkout.pay
+    verb: pay
+    reversibility: hard
+    personsFrom: null
+    amountFrom: args.amount
+  - name: checkout.create_mandate
+    verb: write
+    reversibility: partial
+    personsFrom: null
+    amountFrom: args.amount

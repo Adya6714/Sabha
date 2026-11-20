@@ -2,26 +2,36 @@
   "name": "sabha",
   "version": "0.1.0",
   "private": true,
+  "description": "A governance layer between human intention and autonomous AI action",
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.4.6",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "dev": "turbo run dev --filter=@sabha/web",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=@sabha/web",
+    "start": "turbo run start --filter=@sabha/web",
+    "lint": "turbo run lint && eslint .",
+    "typecheck": "turbo run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @sabha/ledger generate",
+    "db:migrate": "pnpm --filter @sabha/ledger migrate",
+    "db:seed": "pnpm --filter @sabha/ledger seed",
+    "db:studio": "pnpm --filter @sabha/ledger studio",
+    "llm:smoke": "SABHA_LLM_SMOKE=1 vitest run packages/llm/src/smoke.test.ts",
+    "fixtures:load": "tsx scripts/load-demo-fixtures.ts"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "4.3.3",
+    "@sabha/ledger": "workspace:*",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.6",
-    "tailwindcss": "4.3.3",
-    "typescript": "^5"
-  },
-  "description": "See and challenge the reasoning before your AI agent acts"
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "turbo": "^2.5.4",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
 }

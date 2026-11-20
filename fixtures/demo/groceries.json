@@ -1,0 +1,37 @@
+{
+  "id": "groceries",
+  "title": "Restocked your weekly groceries, ₹1,840",
+  "time": "9:02 am",
+  "tags": ["routine"],
+  "ledger": [
+    {
+      "id": "le_grocery_list",
+      "kind": "habit",
+      "claim": "Weekly grocery restock is approved under ₹2,000",
+      "subject": "shopping.groceries",
+      "source": {
+        "origin": "user_stated",
+        "at": "2026-10-01T09:00:00+05:30",
+        "heat": 1
+      },
+      "confidence": 1,
+      "hardness": "flexible",
+      "purposes": ["shopping", "gating"]
+    }
+  ],
+  "action": {
+    "id": "act_groceries",
+    "agentId": "agent_personal",
+    "tool": "checkout.pay",
+    "verb": "pay",
+    "args": { "merchant": "weekly-groceries", "total": 1840 },
+    "amount": { "value": 1840, "currency": "INR" },
+    "reversibility": "partial",
+    "dependsOn": ["le_grocery_list"],
+    "rationale": "Routine weekly restock within the usual budget"
+  },
+  "expected": {
+    "lane": "auto",
+    "findings": []
+  }
+}

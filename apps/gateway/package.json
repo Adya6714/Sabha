@@ -1,0 +1,39 @@
+{
+  "name": "@sabha/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sabha MCP server + proxy scaffold (Phase 4)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./auth": {
+      "types": "./dist/auth.d.ts",
+      "import": "./dist/auth.js",
+      "default": "./dist/auth.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --config ../../vitest.config.ts",
+    "dev": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@sabha/core": "workspace:*",
+    "@sabha/detectors": "workspace:*",
+    "@sabha/gate": "workspace:*",
+    "@sabha/ledger": "workspace:*",
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}

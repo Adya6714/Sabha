@@ -1,0 +1,12 @@
+server: gmail
+tools:
+  - name: gmail.send
+    verb: send
+    reversibility: hard
+    personsFrom: args.to
+    amountFrom: null
+  - name: gmail.create_draft
+    verb: write
+    reversibility: easy
+    personsFrom: args.to
+    amountFrom: null

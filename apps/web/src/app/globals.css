@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+:root {
+  /* Minimal field — cool ivory, not busy carpet fill */
+  --bg: #f8f5ef;
+  --bg-deep: #efe8dc;
+  --card: #fcfaf6;
+  --ink: #171b26;
+  --ink2: #4a5160;
+  --mute: #8a8478;
+  --line: #ddd2c0;
+  --soft: #f1ebe1;
+  /* Royal accents */
+  --green: #1f4a45;
+  --leaf: #3d6b55;
+  --amber: #c4a35a;
+  --gold: #c4a35a;
+  --red: #8b3a3a;
+  --blue: #3d516b;
+  --maroon: #8b3a3a;
+  --indigo: #171b26;
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --frame: 18px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-soft: var(--soft);
+  --color-green: var(--green);
+  --color-leaf: var(--leaf);
+  --color-amber: var(--amber);
+  --color-gold: var(--gold);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+  --color-maroon: var(--maroon);
+  --color-indigo: var(--indigo);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  min-height: 100vh;
+  letter-spacing: -0.01em;
+}
+
+body.has-carpet-frame {
+  padding: var(--frame);
+}
+
+@media (max-width: 639px) {
+  body.has-carpet-frame {
+    padding: 0;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.carpet-edge {
+  position: absolute;
+  background-color: var(--indigo);
+}
+
+.carpet-edge-top,
+.carpet-edge-bottom {
+  left: 0;
+  right: 0;
+  height: var(--frame);
+  background-image: url("/motifs/carpet-band.svg");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+}
+
+.carpet-edge-top {
+  top: 0;
+}
+
+.carpet-edge-bottom {
+  bottom: 0;
+}
+
+.carpet-edge-left,
+.carpet-edge-right {
+  top: 0;
+  bottom: 0;
+  width: var(--frame);
+  background-image: url("/motifs/carpet-band-v.svg");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+}
+
+.carpet-edge-left {
+  left: 0;
+}
+
+.carpet-edge-right {
+  right: 0;
+}
+
+.motif-rule {
+  background-image: url("/motifs/carpet-band.svg");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  opacity: 0.9;
+}
+
+.eyebrow {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.85rem;
+  padding: 0 1.35rem;
+  border-radius: 0.2rem;
+  background: var(--indigo);
+  color: var(--bg);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.btn-primary:hover {
+  background: var(--green);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.85rem;
+  padding: 0 1.35rem;
+  border-radius: 0.2rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: var(--card);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes border-sheen {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.75s ease both;
+}
+
+.animate-rise-delay {
+  animation: rise 0.85s ease 0.1s both;
+}
+
+.animate-rise-late {
+  animation: rise 0.95s ease 0.2s both;
+}
+
+.carpet-edge {
+  animation: border-sheen 10s ease-in-out infinite;
+}
+
+.atmosphere-dot {
+  animation: pulse-soft 5s ease-in-out infinite;
+}

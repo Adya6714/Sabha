@@ -1,0 +1,12 @@
+server: google_calendar
+tools:
+  - name: calendar.accept
+    verb: write
+    reversibility: partial
+    personsFrom: args.attendees
+    amountFrom: null
+  - name: calendar.create
+    verb: write
+    reversibility: easy
+    personsFrom: args.attendees
+    amountFrom: null
