@@ -12,8 +12,27 @@ export type DetectorContext = {
   allowedSignals?: string[];
   /** Signals present on the action */
   usedSignals?: string[];
+  /** User's stated instruction for this turn (intent_conflict optional LLM path). */
+  userIntent?: string;
+  /**
+   * Recent actions in this session, oldest → newest.
+   * Used by exfil_chain to resolve dependsOn ids to prior reads.
+   */
+  recentActions?: ProposedAction[];
+  /**
+   * When true, intent_conflict may call packages/llm complete() for entailment.
+   * Default inference stays deterministic.
+   */
+  enableLlmIntentCheck?: boolean;
+  /** Injected complete() for tests / apps when enableLlmIntentCheck is on. */
+  complete?: (args: {
+    model: string;
+    system?: string;
+    input: unknown;
+    schema: unknown;
+    schemaName?: string;
+  }) => Promise<{ data: { entailed: boolean; reason: string } }>;
 };
-
 export interface Detector {
   name: Finding["detector"];
   run(action: ProposedAction, ctx: DetectorContext): Promise<Finding[]>;

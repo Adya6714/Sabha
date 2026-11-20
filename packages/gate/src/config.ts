@@ -6,6 +6,11 @@ export type GateConfig = {
   coolingOffMinutes: number;
   amountBands: { low: number; medium: number; high: number };
   lambda: number;
+  /**
+   * Hard send/pay/delete/accept verbs the user has explicitly allowed to auto-run.
+   * Empty by default — the floor rule then forces at least ask.
+   */
+  allowHardAutoVerbs?: Array<"send" | "pay" | "delete" | "accept">;
 };
 
 /**
@@ -20,4 +25,5 @@ export const defaultGateConfig = (): GateConfig => ({
   coolingOffMinutes: 120,
   amountBands: { low: 2000, medium: 20000, high: Infinity },
   lambda: 1,
+  allowHardAutoVerbs: [],
 });

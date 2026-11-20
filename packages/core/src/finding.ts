@@ -6,6 +6,8 @@ export const DetectorNameSchema = z.enum([
   "person_rule",
   "influence",
   "scope",
+  "intent_conflict",
+  "exfil_chain",
 ]);
 
 export const FindingSeveritySchema = z.union([

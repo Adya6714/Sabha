@@ -28,7 +28,8 @@ export const scopeDetector: Detector = {
   async run(action, ctx) {
     const findings: Finding[] = [];
     const need = VERB_MIN_LEVEL[action.verb] ?? "execute";
-    const have = ctx.authorityLevel ?? "execute";
+    // Safe default: unknown authority means recommend, not execute.
+    const have = ctx.authorityLevel ?? "recommend";
 
     if (!levelOk(have, need)) {
       findings.push({

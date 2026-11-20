@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "@sabha/core": "workspace:*",
-    "@sabha/ledger": "workspace:*"
+    "@sabha/ledger": "workspace:*",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "typescript": "^5",

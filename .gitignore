@@ -41,7 +41,11 @@ yarn-error.log*
 !.env.example
 
 # local spend meter and encryption key — never commit
-/data/
+/data/llm-spend.json
+/data/sabha-secrets.key
+/data/*.key
+# keep data/eval/ (labelled Gate actions) in git
+
 
 # vercel
 .vercel
