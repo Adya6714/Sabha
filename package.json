@@ -22,9 +22,12 @@
     "db:seed": "pnpm --filter @sabha/ledger seed",
     "db:studio": "pnpm --filter @sabha/ledger studio",
     "llm:smoke": "SABHA_LLM_SMOKE=1 vitest run packages/llm/src/smoke.test.ts",
-    "fixtures:load": "tsx scripts/load-demo-fixtures.ts"
+    "fixtures:load": "tsx scripts/load-demo-fixtures.ts",
+    "eval:gate": "tsx scripts/eval-gate.ts"
   },
   "devDependencies": {
+    "@sabha/detectors": "workspace:*",
+    "@sabha/gate": "workspace:*",
     "@sabha/ledger": "workspace:*",
     "@types/node": "^20",
     "eslint": "^9",
