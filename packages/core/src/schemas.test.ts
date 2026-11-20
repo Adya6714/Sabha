@@ -72,6 +72,38 @@ describe("ProposedActionSchema", () => {
     const action = ProposedActionSchema.parse(validAction);
     expect(action.verb).toBe("send");
     expect(action.tool).toBe("gmail.send");
+    expect(action.dependsOn).toEqual(["le_wake_5am"]);
+  });
+
+  it("defaults origin to user_request when omitted", () => {
+    const action = ProposedActionSchema.parse(validAction);
+    expect(action.origin).toBe("user_request");
+  });
+
+  it("accepts each origin value", () => {
+    for (const origin of [
+      "user_request",
+      "tool_output",
+      "memory",
+      "agent_inference",
+    ] as const) {
+      const action = ProposedActionSchema.parse({ ...validAction, origin });
+      expect(action.origin).toBe(origin);
+    }
+  });
+
+  it("rejects unknown origin values", () => {
+    expect(() =>
+      ProposedActionSchema.parse({ ...validAction, origin: "sponsored" }),
+    ).toThrow();
+  });
+
+  it("keeps dependsOn as the chain field", () => {
+    const action = ProposedActionSchema.parse({
+      ...validAction,
+      dependsOn: ["act_read_1", "le_secret"],
+    });
+    expect(action.dependsOn).toEqual(["act_read_1", "le_secret"]);
   });
 
   it("rejects unknown verbs", () => {

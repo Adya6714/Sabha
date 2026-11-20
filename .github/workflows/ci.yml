@@ -27,8 +27,7 @@ jobs:
       - run: pnpm --filter @sabha/ledger build
       - run: pnpm --filter @sabha/llm build
       - run: pnpm typecheck
-      - run: pnpm exec eslint apps/web packages --ignore-pattern '**/dist/**'
-      - run: pnpm --filter @sabha/web lint
+      - run: pnpm lint
       - run: pnpm test
       - run: pnpm build:web
 

@@ -23,10 +23,12 @@ export {
 export {
   ActionVerbSchema,
   ReversibilitySchema,
+  ActionOriginSchema,
   MoneyAmountSchema,
   ProposedActionSchema,
   type ActionVerb,
   type Reversibility,
+  type ActionOrigin,
   type MoneyAmount,
   type ProposedAction,
 } from "./action.js";
