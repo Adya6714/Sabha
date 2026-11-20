@@ -81,8 +81,35 @@ describe("≥3 fixtures per routing row", () => {
 
   it("auto", () => {
     for (let i = 0; i < 3; i++) {
-      const r = route({ ...base, id: `z${i}` }, [], cfg);
+      // Easy reversibility stays auto; hard send/pay/delete/accept now floors to ask.
+      const r = route({ ...base, id: `z${i}`, reversibility: "easy" }, [], cfg);
       expect(r.lane).toBe("auto");
     }
+  });
+
+  it("hard floor asks for send/pay/delete/accept without findings", () => {
+    for (const verb of ["send", "pay", "delete", "accept"] as const) {
+      const r = route(
+        {
+          ...base,
+          id: `floor_${verb}`,
+          verb,
+          tool: `tool.${verb}`,
+          reversibility: "hard",
+        },
+        [],
+        cfg,
+      );
+      expect(r.lane, verb).toBe("ask");
+    }
+  });
+
+  it("hard floor respects allowHardAutoVerbs", () => {
+    const r = route(
+      { ...base, id: "allowed_send", verb: "send", reversibility: "hard" },
+      [],
+      { ...cfg, allowHardAutoVerbs: ["send"] },
+    );
+    expect(r.lane).toBe("auto");
   });
 });

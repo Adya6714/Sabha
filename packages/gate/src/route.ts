@@ -115,6 +115,20 @@ export function route(
     };
   }
 
+  // Floor: hard irreversible outbound verbs always at least ask unless the user allowed them.
+  const hardFloorVerbs = new Set(["send", "pay", "delete", "accept"]);
+  const allowedHard = new Set(config.allowHardAutoVerbs ?? []);
+  if (
+    action.reversibility === "hard" &&
+    hardFloorVerbs.has(action.verb) &&
+    !allowedHard.has(action.verb as "send" | "pay" | "delete" | "accept")
+  ) {
+    return {
+      lane: "ask",
+      reason: `${action.verb} is hard to reverse — confirm before it runs.`,
+    };
+  }
+
   if ((action.amount?.value ?? 0) > config.amountBands.low && !findings.length) {
     return {
       lane: "notify",
