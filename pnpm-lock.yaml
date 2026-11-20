@@ -150,6 +150,9 @@ importers:
       '@sabha/ledger':
         specifier: workspace:*
         version: link:../ledger
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
     devDependencies:
       typescript:
         specifier: ^5
